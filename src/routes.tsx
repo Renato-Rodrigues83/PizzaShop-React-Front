@@ -9,23 +9,26 @@ import { NotFound } from './pages/404';
 
 
 
+// Define the application's main router using React Router v6
 export const router = createBrowserRouter([
     {
+        // Main app layout for authenticated routes
         path: '/',
         element: <AppLayout />,
-        errorElement: <NotFound />,
+        errorElement: <NotFound />, // Fallback for unmatched routes
         children: [
-            {path: '/', element: <Dashboard />},
-            {path: '/orders', element: <Orders />}
+            { path: '/', element: <Dashboard /> }, // Dashboard page (home)
+            { path: '/orders', element: <Orders /> } // Orders page
         ]
     },
 
     {
+        // Auth layout for authentication-related routes
         path: '/',
         element: <AuthLayout />,
         children: [
-            {path: '/sign-in', element: <SignIn />},
-            {path: '/sign-up', element: <SignUp />}
+            { path: '/sign-in', element: <SignIn /> }, // Sign-in page
+            { path: '/sign-up', element: <SignUp /> } // Sign-up page
         ]
     }
 ])
