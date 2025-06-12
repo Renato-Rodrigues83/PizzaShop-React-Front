@@ -4,6 +4,7 @@ import { DateRangePicker } from "@/components/ui/date-range-picker";
 import { Label } from "@radix-ui/react-label";
 import { useQuery } from "@tanstack/react-query";
 import { subDays } from "date-fns";
+import { Loader2 } from "lucide-react";
 import { useMemo, useState } from "react";
 import { DateRange } from "react-day-picker";
 import { ResponsiveContainer, LineChart, XAxis, YAxis, CartesianGrid, Line } from 'recharts'
@@ -54,7 +55,7 @@ export function RevenueChart() {
                 </div>
             </CardHeader>
             <CardContent>
-                 {chartData && (
+                 {chartData ? (
                     <ResponsiveContainer width="100%" height={248}>
                     <LineChart data={chartData} style={{fontsize: 12}}>
                         <XAxis 
@@ -91,6 +92,10 @@ export function RevenueChart() {
                         
                     </LineChart>
                  </ResponsiveContainer>
+                 ) : (
+                    <div className=" flex h-[240px] items-center justify-center">
+                        <Loader2 className=" h-8 w-8 text-muted-foreground animate-spin" />
+                    </div>
                  )}
             </CardContent>
         </Card>
